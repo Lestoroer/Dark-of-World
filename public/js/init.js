@@ -19,7 +19,7 @@ ctx.imageSmoothingEnabled = false;
 //// тестовый drawer !не юзать для постоянной отрисовки (позже сделаю нормальный)
 setInterval(function(){
 
-	ctx.drawImage(image,0,0,32,48,0,0,64,96);
+	ctx.drawImage(image,0,0,32,48,0,0,256,384);
 
 },0);
 
