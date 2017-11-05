@@ -1,0 +1,4 @@
+
+class Warrior extends Person {
+
+}
