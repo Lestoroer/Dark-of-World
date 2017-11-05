@@ -9,10 +9,12 @@ let ctx = canvas.getContext('2d');
 let stage;// <-- сама сцена
 let person;
 
-let time = {// v-- время нужно для подсчета дельты
+const time = {// v-- время нужно для подсчета дельты
 	delta:0,
 	last_time:Date.now()
 }
+
+let size_block = 100;// азмер одной ячейки.. нужен для размеров интерфейса
 
 function is_mobile() {
 	return (/Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent));
@@ -56,6 +58,7 @@ window.onload = function () {
 	//autorization <-- нужно сделать авторизацию
 	person = new Person();
 
+	person.loadTexture();
 
 	stage = new Game();
 
@@ -65,7 +68,7 @@ window.onload = function () {
 			// v-- отрисовка
 			stage.draw();
 			// v-- обновление (возможно)
-			// stage.update();
+			stage.update();
 		}
 
 		time.delta = Date.now() - time.last_time; 
