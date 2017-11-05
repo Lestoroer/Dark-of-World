@@ -14,7 +14,7 @@ const time = {// v-- время нужно для подсчета дельты
 	last_time:Date.now()
 }
 
-let size_block = 100;// азмер одной ячейки.. нужен для размеров интерфейса
+let size_block = 50;// азмер одной ячейки.. нужен для размеров интерфейса
 
 function is_mobile() {
 	return (/Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent));

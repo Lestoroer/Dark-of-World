@@ -34,7 +34,7 @@ class Game extends Stage {
 			
 				for (let x = Math.round(person.x - (w / 2)); x <= Math.round(person.x + (w / 2)); x++) {
 					//рисуем блок карты 
-					ctx.fillRect(X,Y,99,99);
+					ctx.fillRect(X,Y,size_block - 1,size_block - 1);
 
 					X += size_block;
 				}
