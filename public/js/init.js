@@ -1,26 +1,77 @@
 let canvas = document.createElement('canvas');
 
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
-
 document.body.appendChild(canvas);
 
 let ctx = canvas.getContext('2d');
 
-let image = new Image();
-image.src = 'public/images/hero_1.png';
-
-
 //   v-- убираем blur на пикселях
-ctx.mozImageSmoothingEnabled = false;
-ctx.webkitImageSmoothingEnabled = false;
-ctx.msImageSmoothingEnabled = false;
-ctx.imageSmoothingEnabled = false;
+
+let stage;// <-- сама сцена
+let person;
+
+let time = {// v-- время нужно для подсчета дельты
+	delta:0,
+	last_time:Date.now()
+}
+
+function is_mobile() {
+	return (/Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent));
+}
 
 
-//// тестовый drawer !не юзать для постоянной отрисовки (позже сделаю нормальный)
-setInterval(function(){
+function resize() {
+	if (canvas) {
+		canvas.width = window.innerWidth;
+		canvas.height = window.innerHeight;
+		// console.log(canvas.width,canvas.height);
+	}
 
-	ctx.drawImage(image,0,0,32,48,0,0,256,384);
+	if (ctx) {// v-- нужно переотключать после resize
+		ctx.mozImageSmoothingEnabled = false;
+		ctx.webkitImageSmoothingEnabled = false;
+		ctx.msImageSmoothingEnabled = false;
+		ctx.imageSmoothingEnabled = false;
+	}
+}
 
-},0);
+window.onload = function () {
+
+	resize();
+	window.addEventListener('resize', resize, false);
+
+	if (is_mobile()) {
+		// touch events
+		document.addEventListener('touchstart',function(e) {stage.mousedown(e);}, false);
+		document.addEventListener('touchmove',function(e) {stage.mousemove(e);}, false);
+		document.addEventListener('touchend',function(e) {stage.mouseup(e);}, false);
+	} else {
+		// mouse + key events
+		document.addEventListener('mousedown',function(e) {stage.mousedown(e);}, false);
+		document.addEventListener('mousemove',function(e) {stage.mousemove(e);}, false);
+		document.addEventListener('mouseup',function(e) {stage.mouseup(e);}, false);
+		document.addEventListener('keydown',function(e) {stage.keydown(e);}, false);
+		document.addEventListener('keyup',function(e) {stage.keyup(e);}, false);
+	}
+
+	//autorization <-- нужно сделать авторизацию
+	person = new Person();
+
+
+	stage = new Game();
+
+	setInterval(function(){
+		
+		if (stage) {
+			// v-- отрисовка
+			stage.draw();
+			// v-- обновление (возможно)
+			// stage.update();
+		}
+
+		time.delta = Date.now() - time.last_time; 
+		time.last_time = Date.now();
+		// console.log(1000 / time.delta) // <-- FPS
+		// console.log(time.delta); // <-- дельта нужна для времени в игре
+
+	}, 0);// ^-- хреновый drawer
+}

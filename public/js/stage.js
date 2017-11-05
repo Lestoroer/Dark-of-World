@@ -1,11 +1,18 @@
 
 class Stage {
 	
-	draw(){}
+	draw() {}
 
-	mousedown(e){}
+	mousedown(e) {}
 	
-	mouseup(e){}
+	mouseup(e) {}
 	
-	mousemove(e){}
+	mousemove(e) {}
+
+	keydown(e) {}
+
+	keyup(e) {}
+
+	update() {}//юзает дельту
+	
 }
