@@ -9,6 +9,7 @@ class Game extends Stage {
 			right:false,
 			down:false
 		}
+		this.time_Step = 0;
 	}
 	
 	draw(){
@@ -47,17 +48,37 @@ class Game extends Stage {
 
 		// v--  отрисовка персонажа
 		//if... все дела... 
-		ctx.drawImage(person.image,0,0,32,48,canvas.width/2 - 16, canvas.height / 2- 48,32,48);
+		ctx.drawImage(person.image, person.animate_step * 32, (()=>{
+			switch (person.position) {
+				case 1: return 3;
+				case 2: return 1;
+				case 3: return 2;
+				case 4: return 0;
+				default: return 0;
+			}
+		})()*48, 32, 48, canvas.width/2 - 32, canvas.height / 2- 96, 64, 96);
 	}
 	//эвенты и прочее
 
 
 	//
 	update() {
-		if (this.keys.up) person.y -= .005 * time.delta;
-		if (this.keys.left) person.x -= .005 * time.delta;
-		if (this.keys.right) person.x += .005 * time.delta;
-		if (this.keys.down) person.y += .005 * time.delta;
+		if (this.keys.up) {
+			person.y -= .005 * time.delta;
+			person.position = 1;
+		}
+		if (this.keys.left) {
+			person.x -= .005 * time.delta;
+			person.position = 2;
+		}
+		if (this.keys.right) {
+			person.x += .005 * time.delta;
+			person.position = 3;
+		}
+		if (this.keys.down) {
+			person.y += .005 * time.delta;
+			person.position = 4;
+		}
 	}
 
 	keydown(e) {
