@@ -22,6 +22,7 @@ function is_mobile() {
 
 
 function resize() {
+
 	if (canvas) {
 		canvas.width = window.innerWidth;
 		canvas.height = window.innerHeight;
@@ -34,6 +35,7 @@ function resize() {
 		ctx.msImageSmoothingEnabled = false;
 		ctx.imageSmoothingEnabled = false;
 	}
+	
 }
 
 window.onload = function () {

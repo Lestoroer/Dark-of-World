@@ -12,6 +12,7 @@ class Game extends Stage {
 	}
 	
 	draw(){
+
 		if (!ctx) return;
 		ctx.clearRect(0,0,canvas.width,canvas.height);// <-- чистка экрана
 		let w = Math.round(canvas.width / size_block)+2;// кол-во блоков на ширину экрана (лучше перенески в resize)
@@ -53,10 +54,10 @@ class Game extends Stage {
 
 	//
 	update() {
-		if (this.keys.up) person.y -= .01;
-		if (this.keys.left) person.x -= .01;
-		if (this.keys.right) person.x += .01;
-		if (this.keys.down) person.y += .01;
+		if (this.keys.up) person.y -= .005 * time.delta;
+		if (this.keys.left) person.x -= .005 * time.delta;
+		if (this.keys.right) person.x += .005 * time.delta;
+		if (this.keys.down) person.y += .005 * time.delta;
 	}
 
 	keydown(e) {
