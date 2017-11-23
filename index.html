@@ -11,5 +11,35 @@
 	<script src='public/js/Stage.js'></script>
 	<script src='public/js/Game.js'></script>
 	<script src='public/js/Inventory.js'></script>
+	<script>
+		
+		var ws = new WebSocket("ws://localhost:8081");
+
+		ws.onopen = function() {
+			console.log("Соединение установлено.");
+		};
+
+		ws.onclose = function(e) {
+			if (e.wasClean) {
+				console.log('Соединение закрыто чисто');
+			} else {
+    			console.log('Обрыв соединения'); // например, "убит" процесс сервера
+    		}
+    		console.log('Код: ' + e.code + ' причина: ' + e.reason);
+    	};
+
+    	ws.onmessage = function(e) {
+    		console.log("Получены данные " + e.data);
+    	};
+
+    	ws.onerror = function(e) {
+    		console.log("Ошибка " + e.message);
+    	};
+
+    	function send (data){
+    		ws.send(data);
+    	}
+
+    </script>
 </body>
 </html>

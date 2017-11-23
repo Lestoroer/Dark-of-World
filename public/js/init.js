@@ -99,5 +99,5 @@ window.onload = function () {
 		// console.log(1000 / time.delta) // <-- FPS
 		// console.log(time.delta); // <-- дельта нужна для времени в игре
 
-	}, 0);// ^-- хреновый drawer
+	}, 1);// ^-- хреновый drawer
 }
