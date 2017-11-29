@@ -35,7 +35,7 @@ const time = {// v-- время нужно для подсчета дельты
 	last_time:Date.now()
 }
 
-let size_block = 50;// азмер одной ячейки.. нужен для размеров интерфейса
+let size_block = 50;// размер одной ячейки.. нужен для размеров интерфейса
 
 function is_mobile() {
 	return (/Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent));
@@ -81,6 +81,16 @@ window.onload = function () {
 	//autorization <-- нужно сделать авторизацию
 	person = new Person();
 
+	// Пользователь выбрал класс
+	person = 'warrior'; 
+
+	switch(person) {
+		case 'warrior':
+			person = new Warrior();
+		case 'mage':
+			//person_active = new Warrior();
+	}
+
 	person.loadTexture();
 
 	stage = new Game();
@@ -99,5 +109,5 @@ window.onload = function () {
 		// console.log(1000 / time.delta) // <-- FPS
 		// console.log(time.delta); // <-- дельта нужна для времени в игре
 
-	}, 1);// ^-- хреновый drawer
+	}, 5);// ^-- хреновый drawer
 }

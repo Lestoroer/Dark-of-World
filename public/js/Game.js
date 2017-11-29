@@ -7,7 +7,8 @@ class Game extends Stage {
 			up:false,
 			left:false,
 			right:false,
-			down:false
+			down:false,
+			shift:false
 		}
 		this.time_Step = 0;
 	}
@@ -48,6 +49,7 @@ class Game extends Stage {
 
 		// v--  отрисовка персонажа
 		//if... все дела... 
+
 		ctx.drawImage(person.image, person.animate_step * 32, (()=>{
 			switch (person.position) {
 				case 1: return 3;
@@ -56,29 +58,38 @@ class Game extends Stage {
 				case 4: return 0;
 				default: return 0;
 			}
-		})()*48, 32, 48, canvas.width/2 - 32, canvas.height / 2- 96, 64, 96);
+		})()*48, 32, 48, canvas.width/2 - 32, canvas.height/2 - 96, 64, 96);
+
 	}
 	//эвенты и прочее
 
 
 	//
 	update() {
+
+		// if (this.keys.shift) person.acceleration = person.max_acceleration;
+		// else person.acceleration = 1;
+
 		if (this.keys.up) {
-			person.y -= .005 * time.delta;
+			person.y -= person.speed * .005 * person.acceleration * time.delta;
 			person.position = 1;
+			person.movement();
 		}
 		if (this.keys.left) {
-			person.x -= .005 * time.delta;
+			person.x -= person.speed * .005 * person.acceleration * time.delta;
 			person.position = 2;
+			person.movement();
 		}
 		if (this.keys.right) {
-			person.x += .005 * time.delta;
+			person.x += person.speed * .005 * person.acceleration * time.delta;
 			person.position = 3;
+			person.movement();
 		}
 		if (this.keys.down) {
-			person.y += .005 * time.delta;
+			person.y += person.speed * .005 * person.acceleration * time.delta;
 			person.position = 4;
-		}
+			person.movement();
+		} 
 	}
 
 	keydown(e) {
@@ -88,6 +99,7 @@ class Game extends Stage {
 			case 65: this.keys.left = true; break;
 			case 68: this.keys.right = true; break;
 			case 83: this.keys.down = true; break;
+			case 16: this.keys.shift = true; break;
 		}
 	}
 
@@ -97,6 +109,7 @@ class Game extends Stage {
 			case 65: this.keys.left = false; break;
 			case 68: this.keys.right = false; break;
 			case 83: this.keys.down = false; break;
+			case 16: this.keys.shift = false; break;
 		}
 	}
 }
