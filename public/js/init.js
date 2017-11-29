@@ -111,3 +111,7 @@ window.onload = function () {
 
 	}, 5);// ^-- хреновый drawer
 }
+
+function rand(min, max) {return parseInt(min + ((max - min)*Math.random()));}
+
+let world = new World().getWorld();

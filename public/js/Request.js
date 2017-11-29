@@ -4,7 +4,7 @@ class Request{
 
 	constructor(link='/', callback = null, method='post') {
 		this.xhr = new new XMLHttpRequest();
-		this.link = '/';
+		this.link = link;
 		this.method = method;
 		
 		this.xhr.open(method, link, true);
@@ -29,6 +29,10 @@ class Request{
 
 	run() {
 		this.xhr.send(JSON.stringify(this.data));
+	}
+
+	run_unobject() {
+		this.xhr.send(this.data);
 	}
 
 	repeat(time) {

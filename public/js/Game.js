@@ -12,6 +12,11 @@ class Game extends Stage {
 		}
 		this.time_Step = 0;
 	}
+
+
+	drawTexture(id,x,y) {
+		
+	}
 	
 	draw(){
 
@@ -34,9 +39,18 @@ class Game extends Stage {
 		for (let z = 0; z < 1; z++) {//если нужно больше слоев поверхности, то нужно изменить условие
 			//отрисовываем видимю облать вокруг игрока 
 			for (let y = Math.round(person.y - (h / 2)); y <= Math.round(person.y + (h / 2)); y++) {//отрисовываем область
-			
+
 				for (let x = Math.round(person.x - (w / 2)); x <= Math.round(person.x + (w / 2)); x++) {
 					//рисуем блок карты 
+					if (!world[y] || !world[y][x]) {
+						X += size_block;
+						continue;
+					}
+					switch(world[y][x].id){
+						case 1:ctx.fillStyle = 'green';break;
+						default:ctx.fillStyle = 'black';break;
+					}
+					
 					ctx.fillRect(X,Y,size_block - 1,size_block - 1);
 
 					X += size_block;

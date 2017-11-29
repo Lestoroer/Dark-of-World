@@ -30,7 +30,7 @@ class Person {
 
 	loadTexture() {
 		this.image = new Image();
-		this.image.src = 'public/images/heroes.png';
+		this.image.src = '/images/heroes.png';
 	}
 
 	movement() {
