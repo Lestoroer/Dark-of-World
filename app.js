@@ -8,7 +8,7 @@ var express = require('express');
 var app = express();
 
 
-app.use(express.static(__dirname, {
+app.use(express.static(__dirname + '/public', {
 	etag: false,
 	setHeaders: function(res, path) {
 		res.setHeader('Cache-Control', 'no-cache')

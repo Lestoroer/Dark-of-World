@@ -1,16 +1,16 @@
 <html lang="ru">
 <head>
 	<meta charset="UTF-8">
-	<link rel="stylesheet" href="public/css/main.css">
+	<link rel="stylesheet" href="css/main.css">
 	<title>Dark of world</title>
 </head>
 <body>
-	<script src='public/js/init.js'></script>
-	<script src='public/js/Person.js'></script>
-	<script src='public/js/Heroes.js'></script>
-	<script src='public/js/Stage.js'></script>
-	<script src='public/js/Game.js'></script>
-	<script src='public/js/Inventory.js'></script>
+	<script src='js/init.js'></script>
+	<script src='js/Person.js'></script>
+	<script src='js/Heroes.js'></script>
+	<script src='js/Stage.js'></script>
+	<script src='js/Game.js'></script>
+	<script src='js/Inventory.js'></script>
 	<script>
 		
 		var ws = new WebSocket("ws://localhost:8081");
@@ -39,7 +39,7 @@
     	function send (data){
     		ws.send(data);
     	}
-
+    	
     </script>
 </body>
 </html>

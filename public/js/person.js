@@ -25,7 +25,7 @@ class Person {
 
 	loadTexture() {
 		this.image = new Image();
-		this.image.src = 'public/images/hero_1.png';
+		this.image.src = "../images/hero_1.png";
 	}
 
 	addInv(a) {//a - item 
