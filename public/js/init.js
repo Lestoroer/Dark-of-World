@@ -106,7 +106,7 @@ function rand(min, max) {return parseInt(min + ((max - min)*Math.random()));}
 
 //подгрузка вещей и блоков в игре
 let items = new Items();
-items.loaList();
+items.loadList();
 
 //загрузка мира
 let world = new World().getWorld();
