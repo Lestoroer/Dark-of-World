@@ -50,7 +50,6 @@ class Game extends Stage {
 						case 1:ctx.fillStyle = 'green';break;
 						default:ctx.fillStyle = 'black';break;
 					}
-					
 					ctx.fillRect(X,Y,size_block - 1,size_block - 1);
 
 					X += size_block;
@@ -77,33 +76,36 @@ class Game extends Stage {
 	}
 	//эвенты и прочее
 
-
+	getNavi(array) {
+		let narray = [this.keys.up,this.keys.down,this.keys.left,this.keys.right];
+		for(let i = 0; i < 4; i++)
+			if(narray[i]!=array[i]) return false;
+		return true;
+	}
 	//
 	update() {
+		if ([this.keys.up,this.keys.down,this.keys.left,this.keys.right].indexOf(true) == -1) {
+			person.animate_step = 1;
+			return;
+		}
 
-		// if (this.keys.shift) person.acceleration = person.max_acceleration;
-		// else person.acceleration = 1;
+		let x = 0, y = 0, p = 4;
+		switch((+this.keys.up)+''+(+this.keys.down)+''+(+this.keys.left)+''+(+this.keys.right)) {
+			case '1000':x = Math.cos(-90 / 180 * Math.PI);y = Math.sin(-90 / 180 * Math.PI);p = 1;break;
+			case '0010':x = Math.cos(-180 / 180 * Math.PI);y = Math.sin(-180 / 180 * Math.PI);p = 2;break;
+			case '0100':x = Math.cos( 90 / 180 * Math.PI);y = Math.sin( 90 / 180 * Math.PI);p = 4;break;
+			case '0001':x = Math.cos( 0 / 180 * Math.PI);y = Math.sin( 0 / 180 * Math.PI);p = 3;break;
 
-		if (this.keys.up) {
-			person.y -= person.speed * .005 * person.acceleration * time.delta;
-			person.position = 1;
-			person.movement();
+			case '1010':x = Math.cos(-135 / 180 * Math.PI);y = Math.sin(-135 / 180 * Math.PI);p = 1;break;
+			case '0110':x = Math.cos( 135 / 180 * Math.PI);y = Math.sin( 135 / 180 * Math.PI);p = 4;break;
+			case '1001':x = Math.cos( -45 / 180 * Math.PI);y = Math.sin( -45 / 180 * Math.PI);p = 1;break;
+			case '0101':x = Math.cos(  45 / 180 * Math.PI);y = Math.sin(  45 / 180 * Math.PI);p = 4;break;
 		}
-		if (this.keys.left) {
-			person.x -= person.speed * .005 * person.acceleration * time.delta;
-			person.position = 2;
-			person.movement();
-		}
-		if (this.keys.right) {
-			person.x += person.speed * .005 * person.acceleration * time.delta;
-			person.position = 3;
-			person.movement();
-		}
-		if (this.keys.down) {
-			person.y += person.speed * .005 * person.acceleration * time.delta;
-			person.position = 4;
-			person.movement();
-		} 
+		// let mn = 
+		person.position = p;
+		person.x += person.speed * .005 * x * person.acceleration * time.delta;
+		person.y += person.speed * .005 * y * person.acceleration * time.delta;
+		person.movement();
 	}
 
 	keydown(e) {
@@ -124,6 +126,7 @@ class Game extends Stage {
 			case 68: this.keys.right = false; break;
 			case 83: this.keys.down = false; break;
 			case 16: this.keys.shift = false; break;
+			case 69: stage = new Inventory();break;
 		}
 	}
 }

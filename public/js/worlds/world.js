@@ -11,7 +11,7 @@ class World{
 		
 				if (!this.w[y]) this.w[y] = [];
 		
-				if (!this.w[y][x]) this.w[y][x] = this.generate(x,y,0);
+				if (!this.w[y][x]) this.w[y][x] = {id:this.generate(x,y,0)};
 		
 			}
 		
