@@ -21,14 +21,14 @@ class Game extends Stage {
 
 		if (!ctx) return;
 		ctx.clearRect(0,0,canvas.width,canvas.height);// <-- чистка экрана
-		let w = Math.round(canvas.width / size_block)+2;// кол-во блоков на ширину экрана (лучше перенески в resize)
-		let h = Math.round(canvas.height /size_block)+2;// ^-- repeat for height
+		let w = Math.round(canvas.width / size_block) + 2;// кол-во блоков на ширину экрана (лучше перенески в resize)
+		let h = Math.round(canvas.height /size_block) + 2;// ^-- repeat for height
 
-		if (w%2 == 0) w++;// число должно быть нечетным
-		if (h%2 == 0) h++;// ^--
+		if (w % 2 == 0) w++;// число должно быть нечетным
+		if (h % 2 == 0) h++;// ^--
 
-		let X = Math.round((canvas.width / 2) - (size_block * (w/2))-(size_block/2));// координаты начала для отрисовки
-		let Y = Math.round((canvas.height / 2) - (size_block * (h/2)));
+		let X = Math.round((canvas.width / 2) - (size_block * (w / 2)) - (size_block / 2));// координаты начала для отрисовки
+		let Y = Math.round((canvas.height / 2) - (size_block * (h / 2)));
 
 		X -= Math.round(size_block * (person.x % 1));// сдвигать по юзеру( для плавного движения)
 		Y -= Math.round(size_block * (person.y % 1))// ^--

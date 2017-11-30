@@ -15,7 +15,7 @@ class Items{
 	setJSON(items){
 		this.items = JSON.parse(items);
 	}
-
+ 
 	getItems(){
 		return this.items;
 	}

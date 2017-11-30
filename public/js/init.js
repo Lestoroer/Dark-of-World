@@ -104,4 +104,12 @@ window.onload = function () {
 
 function rand(min, max) {return parseInt(min + ((max - min)*Math.random()));}
 
+//подгрузка вещей и блоков в игре
+let items = new Items();
+items.loaList();
+
+//загрузка мира
 let world = new World().getWorld();
+
+let texture = new Image();
+texture.src = '../images/textures.png';
