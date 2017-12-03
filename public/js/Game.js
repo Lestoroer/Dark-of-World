@@ -42,16 +42,14 @@ class Game extends Stage {
 
 				for (let x = Math.round(person.x - (w / 2)); x <= Math.round(person.x + (w / 2)); x++) {
 					//рисуем блок карты 
-					if (!world[y] || !world[y][x]) {
-						X += size_block;
-						continue;
+					if (world[y] && world[y][x]) {
+						
+						switch(world[y][x].id){
+							case 1:ctx.fillStyle = 'green';break;
+							default:ctx.fillStyle = 'black';break;
+						}
+						ctx.fillRect(X,Y,size_block - 1,size_block - 1);
 					}
-					switch(world[y][x].id){
-						case 1:ctx.fillStyle = 'green';break;
-						default:ctx.fillStyle = 'black';break;
-					}
-					ctx.fillRect(X,Y,size_block - 1,size_block - 1);
-
 					X += size_block;
 				}
 				X -= size_block * (w + 1);
@@ -91,21 +89,22 @@ class Game extends Stage {
 
 		let x = 0, y = 0, p = 4;
 		switch((+this.keys.up)+''+(+this.keys.down)+''+(+this.keys.left)+''+(+this.keys.right)) {
-			case '1000':x = Math.cos(-90 / 180 * Math.PI);y = Math.sin(-90 / 180 * Math.PI);p = 1;break;
-			case '0010':x = Math.cos(-180 / 180 * Math.PI);y = Math.sin(-180 / 180 * Math.PI);p = 2;break;
-			case '0100':x = Math.cos( 90 / 180 * Math.PI);y = Math.sin( 90 / 180 * Math.PI);p = 4;break;
-			case '0001':x = Math.cos( 0 / 180 * Math.PI);y = Math.sin( 0 / 180 * Math.PI);p = 3;break;
+			case '1000':x = Math.cos(-90 / 180 * Math.PI);		y = Math.sin(-90 / 180 * Math.PI);	p = 1;break;
+			case '0010':x = Math.cos(-180 / 180 * Math.PI);		y = Math.sin(-180 / 180 * Math.PI);	p = 2;break;
+			case '0100':x = Math.cos( 90 / 180 * Math.PI);		y = Math.sin( 90 / 180 * Math.PI);	p = 4;break;
+			case '0001':x = Math.cos( 0 / 180 * Math.PI);		y = Math.sin( 0 / 180 * Math.PI);	p = 3;break;
 
-			case '1010':x = Math.cos(-135 / 180 * Math.PI);y = Math.sin(-135 / 180 * Math.PI);p = 1;break;
-			case '0110':x = Math.cos( 135 / 180 * Math.PI);y = Math.sin( 135 / 180 * Math.PI);p = 4;break;
-			case '1001':x = Math.cos( -45 / 180 * Math.PI);y = Math.sin( -45 / 180 * Math.PI);p = 1;break;
-			case '0101':x = Math.cos(  45 / 180 * Math.PI);y = Math.sin(  45 / 180 * Math.PI);p = 4;break;
+			case '1010':x = Math.cos(-135 / 180 * Math.PI);		y = Math.sin(-135 / 180 * Math.PI);	p = 1;break;
+			case '0110':x = Math.cos( 135 / 180 * Math.PI);		y = Math.sin( 135 / 180 * Math.PI);	p = 4;break;
+			case '1001':x = Math.cos( -45 / 180 * Math.PI);		y = Math.sin( -45 / 180 * Math.PI);	p = 1;break;
+			case '0101':x = Math.cos(  45 / 180 * Math.PI);		y = Math.sin(  45 / 180 * Math.PI);	p = 4;break;
 		}
 		// let mn = 
 		person.position = p;
 		person.x += person.speed * .005 * x * person.acceleration * time.delta;
 		person.y += person.speed * .005 * y * person.acceleration * time.delta;
 		person.movement();
+		console.log(x,y);
 	}
 
 	keydown(e) {

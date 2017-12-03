@@ -99,7 +99,7 @@ window.onload = function () {
 		// console.log(1000 / time.delta) // <-- FPS
 		// console.log(time.delta); // <-- дельта нужна для времени в игре
 
-	}, 1);// ^-- хреновый drawer
+	}, 1);// ^-- нормальный drawer
 }
 
 function rand(min, max) {return parseInt(min + ((max - min)*Math.random()));}
